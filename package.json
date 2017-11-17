@@ -1,0 +1,19 @@
+{
+  "name": "puppeteer-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^4.1.0",
+    "jasmine": "^2.8.0",
+    "jest": "^21.2.1",
+    "moment": "^2.19.2",
+    "puppeteer": "^0.13.0"
+  }
+}

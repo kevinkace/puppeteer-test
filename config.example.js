@@ -1,0 +1,6 @@
+"use strict";
+
+module.exports = {
+    emailBase : "your-email-address+{}@gmail.com",
+    urlBase   : "https://www.guildwars2.com/en/"
+};
