@@ -4,16 +4,42 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint test/*.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^4.11.0",
+    "eslint-config-arenanet": "^3.3.1",
     "faker": "^4.1.0",
-    "jasmine": "^2.8.0",
     "jest": "^21.2.1",
     "moment": "^2.19.2",
     "puppeteer": "^0.13.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/eslint-config-arenanet/eslintrc.js",
+    "env": {
+      "node": true,
+      "jasmine": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
+    "rules": {
+      "space-before-function-paren": [
+        "error",
+        {
+          "anonymous": "never",
+          "named": "never",
+          "asyncArrow": "always"
+        }
+      ],
+      "prefer-template": "off",
+      "consistent-this": "off"
+    }
   }
 }
