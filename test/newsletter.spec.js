@@ -16,8 +16,9 @@ const puppeteer = require("puppeteer"),
 let page, browser;
 
 beforeAll(async () => {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch(config.launchCfg);
     page    = await browser.newPage();
+    await page.setViewport({ width : 1400, height : 1000 });
 });
 
 afterAll(() => {
@@ -32,19 +33,21 @@ describe("Newsletter", async () => {
     test("can signup successfully", async () => {
         await page.goto(`${config.urlBase}/newsletter-signup/`);
 
-        await page.click(`form [name="email"]`);
+        await page.click(`form[action="/newsletter"] [name="email"]`);
         await page.keyboard.type(user.email);
 
-        await page.click(`form [name="month"]`);
+        await page.click(`form[action="/newsletter"] [name="month"]`);
         await page.keyboard.type(user.month);
 
-        await page.click(`form [name="day"]`);
+        await page.click(`form[action="/newsletter"] [name="day"]`);
         await page.keyboard.type(user.day);
 
-        await page.click(`form [name="year"]`);
+        await page.click(`form[action="/newsletter"] [name="year"]`);
         await page.keyboard.type(user.year);
 
-        await page.click(`form [type="submit"]`);
+        await page.click('form[action="/newsletter"] [name="privacy"]')
+
+        await page.click(`form[action="/newsletter"] [type="submit"]`);
 
         await page.waitForSelector("#nls-step-added", { visible : true });
     });

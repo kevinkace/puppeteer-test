@@ -18,6 +18,7 @@ let page, browser;
 beforeAll(async () => {
     browser = await puppeteer.launch();
     page    = await browser.newPage();
+    await page.setViewport({ width : 1400, height : 1000 });
 });
 
 afterAll(() => {
@@ -32,20 +33,22 @@ describe("Path of Fire", async () => {
     test("can signup to newsletters successfully", async () => {
         await page.goto(`${config.urlBase}/path-of-fire/`);
 
-        await page.click(`form [name="email"]`);
+        await page.click(`form[action="/newsletter"] [name="email"]`);
         await page.keyboard.type(user.email);
 
-        await page.click(`form [name="month"]`);
+        await page.click(`form[action="/newsletter"] [name="month"]`);
         await page.keyboard.type(user.month);
 
-        await page.click(`form [name="day"]`);
+        await page.click(`form[action="/newsletter"] [name="day"]`);
         await page.keyboard.type(user.day);
 
-        await page.click(`form [name="year"]`);
+        await page.click(`form[action="/newsletter"] [name="year"]`);
         await page.keyboard.type(user.year);
 
-        await page.click(`form [type="submit"]`);
+        await page.click('form[action="/newsletter"] [name="privacy"]')
 
-        await page.waitForSelector("#newsletter .mc869e1a60_h");
+        await page.click(`form[action="/newsletter"] [type="submit"]`);
+
+        await page.waitForSelector("#newsletter .success");
     });
 });

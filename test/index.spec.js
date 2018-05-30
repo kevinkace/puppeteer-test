@@ -11,6 +11,7 @@ let page, browser;
 beforeAll(async () => {
     browser = await puppeteer.launch();
     page    = await browser.newPage();
+    await page.setViewport({ width : 1400, height : 1000 });
 });
 
 afterAll(() => {
@@ -19,6 +20,7 @@ afterAll(() => {
 
 describe("GW2", async () => {
     test("can load the homepage", async () => {
+        console.log(`${config.urlBase}/`);
         await page.goto(`${config.urlBase}/`);
     });
 
